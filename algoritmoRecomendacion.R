@@ -3,6 +3,7 @@
 # Author     : dvasquez
 
 #Algoritmos de recomendacion
+rm(list = ls())
 library(FactoMineR)
 
 #Abra desde “FactoMineR” el archivo “EjemploAlgoritmosRecomendación.csv y visualizar
@@ -36,6 +37,7 @@ ncol(df)  #numero de columnas
 
 #calcule la Media y la Desviación Estándar para todas las variables
 result.mean <- colMeans(sdf)
+print(result.mean)
 sapply(sdf, mean)
 print(summary(df)) 
 
@@ -70,15 +72,23 @@ ggplot(df, aes(x = Calidad.Producto)) + geom_histogram(binwidth = 0.1)
 
 
 #density plots
-ggplot(df, aes(x = Precio)) + geom_density()
+ggplot(sdf, aes(x = Precio)) + geom_density()
 
-ggplot(df, aes(x = Precio, fill = X)) + geom_density()
+ggplot(sdf, aes(x = Precio, y = X)) + geom_density()
 
+help(ggplot)
 #6.- Para cada una de las variables identifique los datos atípicos, luego márquelos en el archivo Excel
 #diagrama de cajas
 qplot(data = df, x = Calidad.Producto, y = Precio) + 
   scale_color_brewer(palette = 'Accent')
 
+boxplot(df$Velocidad.Entrega, main="Valores atipicos", xlab="", ylab="Velocidad.Entrega")
+
+boxplot(sdf)
+
+boxplot(sdf$Velocidad.Entrega,sdf$Precio)
+
+ggplot(sdf, aes(x = Durabilidad , y = Precio)) + geom_boxplot()
 
 
 #7.-Cargue el paquete Rattle como se muestra a continuación
@@ -95,8 +105,11 @@ print(summary(df))
 #8.-Con Rattle grafique la distribución de probabilidad (Histograma) de las
 #variables Velocidad.Entrega, Precio, Durabilidad e
 #Imagen.Producto. y dé una interpretación del tipo de distribución.
-
-
+par(mfrow=c(1,1))
+hist(sdf$Velocidad.Entrega)
+hist(sdf$Precio)
+hist(sdf$Durabilidad)
+hist(sdf$Imagen.Producto)
 
 #Con Rattle calcule la matriz de correlaciones.
 cor(sdf,  method="pearson")

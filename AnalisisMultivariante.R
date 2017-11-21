@@ -4,10 +4,10 @@
 
 #Identificacion de valores atipicos multivariados
 #Importacion de archivos de exel
-install.packages("RODBC", dependencies=TRUE); #error al importar con esta libreria archivo de exel necesita plugin de microsoft
-library('RODBC')
+#install.packages("RODBC", dependencies=TRUE); #error al importar con esta libreria archivo de exel necesita plugin de microsoft
+#library('RODBC')
 
-install.packages("gdata")
+#install.packages("gdata")
 library('gdata')
 
 require(gdata)
